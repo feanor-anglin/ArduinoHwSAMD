@@ -16,8 +16,8 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef _VARIANT_MYSENSORS_GW_
-#define _VARIANT_MYSENSORS_GW_
+#ifndef _VARIANT_GOWIRED_GW_
+#define _VARIANT_GOWIRED_GW_
 
 #define ARDUINO_SAMD_VARIANT_COMPLIANCE 10606
 
@@ -73,7 +73,7 @@ extern "C" {
  */
 // #define digitalPinToTimer(P)
 
-// LEDs
+/*// LEDs
 #define PIN_LED_13 (16u)
 #define PIN_LED_RXL LED_ORANGE
 #define PIN_LED_TXL LED_ORANGE
@@ -118,15 +118,15 @@ static const uint8_t A5 = PIN_A5;
 /*
  * Serial interfaces
  */
-// Serial (EDBG)
-//#define PIN_SERIAL_RX       (31ul)
-//#define PIN_SERIAL_TX       (30ul)
-//#define PAD_SERIAL_TX       (UART_TX_PAD_2)
-//#define PAD_SERIAL_RX       (SERCOM_RX_PAD_3)
+// Serial (RS485_1)
+#define PIN_SERIAL_RX       (25ul)
+#define PIN_SERIAL_TX       (19ul)
+#define PAD_SERIAL_TX       (UART_TX_PAD_2)
+#define PAD_SERIAL_RX       (SERCOM_RX_PAD_3)
 
-// Serial1
-#define PIN_SERIAL1_RX (0ul)
-#define PIN_SERIAL1_TX (1ul)
+// Serial1 (RS485_2)
+#define PIN_SERIAL1_RX (3ul)
+#define PIN_SERIAL1_TX (4ul)
 #define PAD_SERIAL1_TX (UART_TX_PAD_2)
 #define PAD_SERIAL1_RX (SERCOM_RX_PAD_3)
 
@@ -135,55 +135,60 @@ static const uint8_t A5 = PIN_A5;
  */
 #define SPI_INTERFACES_COUNT 3
 
-// SPI1
-#define PIN_SPI1_MISO (27u)
-#define PIN_SPI1_MOSI (26u)
-#define PIN_SPI1_SCK (28u)
-#define PIN_SPI1_SS (PIN_A2)
-#define PERIPH_SPI1 sercom1
-#define PAD_SPI1_TX SPI_PAD_0_SCK_1
-#define PAD_SPI1_RX SERCOM_RX_PAD_2
-static const uint8_t SS1 =
-    PIN_SPI1_SS; // SPI Slave SS not used. Set here only for reference.
+// SPI0 (W5500)
+#define PIN_SPI_MISO         (10u)
+#define PIN_SPI_MOSI         (11u)
+#define PIN_SPI_SCK          (13u)
+#define PIN_SPI_SS           (43u)
+#define PERIPH_SPI           sercom1
+#define PAD_SPI_TX           SPI_PAD_0_SCK_1
+#define PAD_SPI_RX           SERCOM_RX_PAD_2
+static const uint8_t SS    = PIN_SPI_SS;         // SPI Slave SS not used. Set here only for reference.
+static const uint8_t MOSI  = PIN_SPI_MOSI;
+static const uint8_t MISO  = PIN_SPI_MISO;
+static const uint8_t SCK   = PIN_SPI_SCK;
+
+// SPI1 (MCP25625)
+#define PIN_SPI1_MISO        (1u)
+#define PIN_SPI1_MOSI        (22u)
+#define PIN_SPI1_SCK         (38u)
+#define PIN_SPI1_SS          (2u)
+#define PERIPH_SPI1          sercom2
+#define PAD_SPI1_TX          SPI_PAD_0_SCK_1
+#define PAD_SPI1_RX          SERCOM_RX_PAD_2
+static const uint8_t SS1   = PIN_SPI1_SS;
 static const uint8_t MOSI1 = PIN_SPI1_MOSI;
 static const uint8_t MISO1 = PIN_SPI1_MISO;
-static const uint8_t SCK1 = PIN_SPI1_SCK;
+static const uint8_t SCK1  = PIN_SPI1_SCK;
 
-// SPI0: Connected to W5100
-#define PIN_SPI_MISO (22u)
-#define PIN_SPI_MOSI (21u)
-#define PIN_SPI_SCK (23u)
-#define PIN_SPI_SS (24u)
-#define PERIPH_SPI sercom4
-#define PAD_SPI_TX SPI_PAD_0_SCK_1
-#define PAD_SPI_RX SERCOM_RX_PAD_2
-static const uint8_t SS   = PIN_SPI_SS;
-static const uint8_t MOSI = PIN_SPI_MOSI;
-static const uint8_t MISO = PIN_SPI_MISO;
-static const uint8_t SCK = PIN_SPI_SCK;
-
-// SPI2: Connected to MysX
-#define PIN_SPI2_MISO (11u)
-#define PIN_SPI2_MOSI (10u)
-#define PIN_SPI2_SCK (12u)
-#define PERIPH_SPI2 sercom2
-#define PAD_SPI2_TX SPI_PAD_0_SCK_1
-#define PAD_SPI2_RX SERCOM_RX_PAD_2
+// SPI2 (SD & Panel)
+#define PIN_SPI2_MISO        (6u)
+#define PIN_SPI2_MOSI        (20u)
+#define PIN_SPI2_SCK         (12u)
+#define PIN_SPI1_SS1         (9u)
+#define PIN_SPI1_SS2         (7u)
+#define PIN_SPI1_SS3         (30u)
+#define PERIPH_SPI2          sercom3
+#define PAD_SPI2_TX          SPI_PAD_0_SCK_1
+#define PAD_SPI2_RX          SERCOM_RX_PAD_2
+static const uint8_t SS2_1 = PIN_SPI2_SS1;
+static const uint8_t SS2_2 = PIN_SPI2_SS2;
+static const uint8_t SS2_3 = PIN_SPI2_SS3;
 static const uint8_t MOSI2 = PIN_SPI2_MOSI;
 static const uint8_t MISO2 = PIN_SPI2_MISO;
-static const uint8_t SCK2 = PIN_SPI2_SCK;
+static const uint8_t SCK2  = PIN_SPI2_SCK;
 
-#define SPI_USER SPI2
+//#define SPI_USER SPI2
 
 /*
  * Wire Interfaces
  */
 #define WIRE_INTERFACES_COUNT 1
 
-#define PIN_WIRE_SDA         (7u)
-#define PIN_WIRE_SCL         (6u)
-#define PERIPH_WIRE          sercom3
-#define WIRE_IT_HANDLER      SERCOM3_Handler
+#define PIN_WIRE_SDA         (4u)
+#define PIN_WIRE_SCL         (3u)
+#define PERIPH_WIRE          sercom0
+#define WIRE_IT_HANDLER      SERCOM0_Handler
 
 static const uint8_t SDA = PIN_WIRE_SDA;
 static const uint8_t SCL = PIN_WIRE_SCL;
@@ -191,73 +196,44 @@ static const uint8_t SCL = PIN_WIRE_SCL;
 /*
  * USB
  */
-#define PIN_USB_HOST_ENABLE LED_ORANGE
-#define PIN_USB_DM (45ul)
-#define PIN_USB_DP (46ul)
+//#define PIN_USB_HOST_ENABLE LED_ORANGE
+#define PIN_USB_DM (28ul)
+#define PIN_USB_DP (29ul)
 
 #ifdef __cplusplus
 }
 #endif
 
 /*
- * MYSX pins
- */
-
-#define MYSX_D1_DFM (0ul)
-#define MYSX_D2_DTM (1ul)
-#define MYSX_D3_INT (2ul)
-#define MYSX_D4_INT (3ul)
-#define MYSX_D5_PWM (4ul)
-#define MYSX_D6_PWM (5ul)
-#define MYSX_D7_SCL (6ul)
-#define MYSX_D8_SDA (7ul)
-#define MYSX_D9_A3 (8ul)
-#define MYSX_D10_A4 (9ul)
-#define MYSX_D11_MOSI (10ul)
-#define MYSX_D12_MISO (11ul)
-#define MYSX_D13_SCK (12ul)
-#define MYSX_D14_CS (13ul)
-#define MYSX_A1 (14ul)
-#define MYSX_A2 (15ul)
-#define MYSX_SPI SPI2
-
-/*
  * Onboard hardware
  */
-#define MY_SIGNING_ATSHA204_PIN (44ul)
-#define MY_HW_ERR_LED_PIN LED_RED
-#define MY_HW_RX_LED_PIN LED_YELLOW
-#define MY_HW_TX_LED_PIN LED_GREEN
 
-#define RF24_SPI SPI1
-#define MY_RF24_CE_PIN (34ul)
-#define MY_RF24_CS_PIN (29ul)
-#define MY_RF24_IRQ_PIN (31ul)
+// RS485_1
+#define SERIAL_DE (42u)
 
-#define RFM69_SPI SPI1
-#define MY_RFM69_CS_PIN (30ul)
-#define MY_RFM69_IRQ_PIN (32ul)
-#define MY_RFM69_IRQ_NUM (32ul)
-#define MY_RFM69_RST_PIN (43ul)
-#define MY_RFM69_DIO5 (42ul)
+// RS485_2
+#define SERIAL1_DE (17u)
 
-#define RFM95_SPI SPI1
-#define MY_RFM95_SPI_CS (30ul)
-#define MY_RFM95_IRQ_PIN (32ul)
-#define MY_RFM95_IRQ_NUM (32ul)
-#define MY_RFM95_RST_PIN (43ul)
-#define MY_RFM95_DIO5 (42ul)
+// MCP25625
+#define CAN_STANDBY (23u)
+#define CAN_RESET (24u)
 
-#define SDCARD_SPI SPI1
-#define MY_SDCARD_DETECT (35ul)
-#define MY_SDCARD_CS (33ul)
-#define MY_INCLUSION_MODE_BUTTON_PIN (41ul)
+// W5500
+#define LAN_RESET (5u)
 
-#define MY_SWC1 (38ul)
-#define MY_SWC2 (39ul)
-#define MY_SWC3 (40ul)
-#define MY_BAT_DETECT (36ul)
-#define MY_SUPPLY_DETECT (37ul)
+// SD card
+#define SDCARD_DETECT (18ul)
+#define SDCARD_CS (PIN_SPI2_SS1)
+
+// Relay
+#define RELAY_PIN (8u)
+
+// Connector
+#define CONNECTOR_CS1 (PIN_SPI2_SS2)
+#define CONNECTOR_CS2 (PIN_SPI2_SS3)
+#define CONNECTOR_PIN1 (31u)
+#define CONNECTOR_PIN2 (26u)
+
 /*----------------------------------------------------------------------------
  *        Arduino objects - C++ only
  *----------------------------------------------------------------------------*/
@@ -276,7 +252,7 @@ extern SERCOM sercom4;
 extern SERCOM sercom5;
 
 // extern Uart Serial;
-extern Uart Serial1;
+//extern Uart Serial1;
 
 #endif
 
@@ -302,11 +278,12 @@ extern Uart Serial1;
 // SERIAL_PORT_HARDWARE_OPEN  Hardware serial ports which are open for use.
 // Their RX & TX
 //                            pins are NOT connected to anything by default.
-//#define SERIAL_PORT_USBVIRTUAL      SerialUSB
-//#define SERIAL_PORT_MONITOR         Serial
+#define SERIAL_PORT_USBVIRTUAL      SerialUSB
+#define SERIAL_PORT_MONITOR         SerialUSB
 // Serial has no physical pins broken out, so it's not listed as HARDWARE port
 //#define SERIAL_PORT_HARDWARE        Serial1
 //#define SERIAL_PORT_HARDWARE_OPEN   Serial1
 
-#define Serial SerialUSB
-#endif /* _VARIANT_MYSENSORS_GW_ */
+
+//#define Serial SerialUSB
+#endif /* _VARIANT_GOWIRED_GW_ */
