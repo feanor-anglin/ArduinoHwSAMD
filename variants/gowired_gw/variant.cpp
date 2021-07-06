@@ -16,6 +16,54 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/*
+ * +------------+------------------+--------+-----------------+--------------------------------------------------------------------------------------------------------
+ * + Pin number |  Label/Name      |  PIN   | Notes           | Comments (* is for default peripheral in use)
+ * +------------+------------------+--------+-----------------+--------------------------------------------------------------------------------------------------------
+ * | 0          |                  |  PA11  | Not connected   | EIC/EXTINT[11] ADC/AIN[19]           PTC/X[3]  SERCOM0/PAD[3]  SERCOM2/PAD[3]  TCC0/WO[3]  TCC1/WO[1]
+ * | 1          | SPI1_MISO        |  PA10  | CAN MISO        | EIC/EXTINT[10] ADC/AIN[18]           PTC/X[2]  SERCOM0/PAD[2] *SERCOM2/PAD[2]  TCC0/WO[2]  TCC1/WO[0]
+ * | 2          | SPI1_CS          |  PA14  | CAN CS          | EIC/EXTINT[14]                                 SERCOM2/PAD[2]  SERCOM4/PAD[2]  TC3/WO[0]   TCC0/WO[4]
+ * | 3          | SCL              |  PA09  |                 | EIC/EXTINT[9]  ADC/AIN[17]           PTC/X[1] *SERCOM0/PAD[1]  SERCOM2/PAD[1]  TCC0/WO[1]  TCC1/WO[3]
+ * | 4          | SDA              |  PA08  |                 | EIC/NMI        ADC/AIN[16]           PTC/X[0] *SERCOM0/PAD[0]  SERCOM2/PAD[0]  TCC0/WO[0]  TCC1/WO[2]
+ * | 5          | LAN_RESET        |  PA15  | Digital output  | EIC/EXTINT[15]                                 SERCOM2/PAD[3]  SERCOM4/PAD[3]  TC3/WO[1]   TCC0/WO[5]
+ * | 6          | SPI2_MISO        |  PA20  | SDCARD & CONN   | EIC/EXTINT[4]                        PTC/X[8]  SERCOM5/PAD[2] *SERCOM3/PAD[2]              TCC0/WO[6]
+ * | 7          | SPI2_CS2         |  PA21  | Connector CS1   | EIC/EXTINT[5]                        PTC/X[9]  SERCOM5/PAD[3]  SERCOM3/PAD[3]              TCC0/WO[7]
+ * | 8          | RELAY_PIN        |  PA06  | Digital output  | EIC/EXTINT[6]  ADC/AIN[6]  AC/AIN[2] PTC/Y[4]  SERCOM0/PAD[2]                  TCC1/WO[0]
+ * | 9          | SPI2_CS1         |  PA07  | SDCARD CS       | EIC/EXTINT[7]  ADC/AIN[7]  AC/AIN[3] PTC/Y[5]  SERCOM0/PAD[3]                 *TCC1/WO[1]
+ * | 10         | SPI0_MISO        |  PA18  | LAN MISO        | EIC/EXTINT[2]                        PTC/X[6] *SERCOM1/PAD[2]  SERCOM3/PAD[2]  TC3/WO[0]   TCC0/WO[2]
+ * | 11         | SPI0_MOSI        |  PA16  | LAN MOSI        | EIC/EXTINT[0]                        PTC/X[4] *SERCOM1/PAD[0]  SERCOM3/PAD[0]  TCC2/WO[0]  TCC0/WO[6]
+ * | 12         | SPI2_SCK         |  PA19  | SDCARD & CONN   | EIC/EXTINT[3]                        PTC/X[7]  SERCOM1/PAD[3] *SERCOM3/PAD[3]  TC3/WO[1]   TCC0/WO[3]
+ * | 13         | SPI0_SCK         |  PA17  | LAN SCK         | EIC/EXTINT[1]                        PTC/X[5] *SERCOM1/PAD[1]  SERCOM3/PAD[1]  TCC2/WO[1]  TCC0/WO[7]
+ * | 14         |                  |  PA02  | Not connected   | EIC/EXTINT[2]  ADC/AIN[0]  DAC/VOUT  PTC/Y[0]
+ * | 15         | UART1_TX         |  PB08  | RS485_1 TX      | EIC/EXTINT[8]  ADC/AIN[2]            PTC/Y[14]                *SERCOM4/PAD[0]  TC4/WO[0]
+ * | 16         | UART1_RX         |  PB09  | RS485_1 RX      | EIC/EXTINT[9]  ADC/AIN[3]            PTC/Y[15]                *SERCOM4/PAD[1]  TC4/WO[1]
+ * | 17         | DE_1             |  PA04  | RS485_1 DE      | EIC/EXTINT[4]  ADC/AIN[4]  AC/AIN[0] PTC/Y[2]  SERCOM0/PAD[0]                  TCC0/WO[0]
+ * | 18         | SDCARD_DET       |  PA05  | Digital input   | EIC/EXTINT[5]  ADC/AIN[5]  AC/AIN[1] PTC/Y[5]  SERCOM0/PAD[1]                  TCC0/WO[1]
+ * | 19         | UART0_TX         |  PB02  | RS485_0 TX      | EIC/EXTINT[2]  ADC/AIN[10]           PTC/Y[8] 				  *SERCOM5/PAD[0]
+ * | 20         | SPI2_MOSI        |  PA22  | SDCARD & CONN   | EIC/EXTINT[6]                        PTC/X[10]*SERCOM3/PAD[0]  SERCOM5/PAD[0]  TC4/WO[0]   TCC0/WO[4]
+ * | 21         |                  |  PA23  | Not connected   | EIC/EXTINT[7]                        PTC/X[11] SERCOM3/PAD[1]  SERCOM5/PAD[1]  TC4/WO[1]   TCC0/WO[5]
+ * | 22         | SPI1_MOSI        |  PA12  | CAN MOSI        | EIC/EXTINT[12]                                *SERCOM2/PAD[0]  SERCOM4/PAD[0]  TCC2/WO[0]  TCC0/WO[6]
+ * | 23         | CAN_STBY         |  PB10  | MCP25625 STANDBY| EIC/EXTINT[10]                                 SERCOM4/PAD[2]  TC5/WO[0]       TCC0/WO[4]
+ * | 24         | CAN_RESET        |  PB11  | MCP25625 RESET  | EIC/EXTINT[11]                                 SERCOM4/PAD[3]  TC5/WO[1]       TCC0/WO[5]
+ * | 25         | UART0_RX         |  PB03  | RS485_0 RX      | EIC/EXTINT[3]  ADC/AIN[11]           PTC/Y[9]                 *SERCOM5/PAD[1]  TC6/WO[1]   TCC3/WO[3]
+ * | 26         | CONN_OUT2        |  PA27  | CONNECTOR PIN   | EIC/EXTINT[15]                                                                 TCC3/WO[6]
+ * | 27         |                  |  PA28  | Not connected   | EIC/EXTINT[8]
+ * | 28         |                  |  PA24  | USB_NEGATIVE    | *USB/DM
+ * | 29         |                  |  PA25  | USB_POSITIVE    | *USB/DP
+ * | 30         | SPI2_CS3         |  PB22  | CONNECTOR CS2   | SERCOM5/PAD[2]
+ * | 31         | CONN_OUT1        |  PB23  | CONNECTOR PIN   | SERCOM5/PAD[3]
+ * | 38         | SPI1_SCK         |  PA13  | CAN SCK         | EIC/EXTINT[13]                                *SERCOM2/PAD[1]  SERCOM4/PAD[1]  TCC2/WO[1]  TCC0/WO[7]
+ * | 42         | DE_0             |  PA03  | RS485_0 DE      | EIC/EXTINT[3]  [ADC|DAC]/VREFA ADC/AIN[1] PTC/Y[1]
+ * | 44         |                  |  PA30  | SWCLK           | EXTINT[10]                                                     SERCOM1/PAD[2]  TCC1/WO[0]
+ * | 45         |                  |  PA31  | SWDIO           | EXTINT[11]                                                     SERCOM1/PAD[3]  TCC1/WO[1]
+ * +------------+------------------+--------+-----------------+--------------------------------------------------------------------------------------------------------
+ * |            |32.768KHz Crystal |        |                 |
+ * +------------+------------------+--------+-----------------+--------------------------------------------------------------------------------------------------------
+ * |            |                  |  PA00  | XIN32           | EIC/EXTINT[0] SERCOM1/PAD[0] TCC2/WO[0]
+ * |            |                  |  PA01  | XOUT32          | EIC/EXTINT[1] SERCOM1/PAD[1] TCC2/WO[1]
+ * +------------+------------------+--------+-----------------+--------------------------------------------------------------------------------------------------------
+ */
+ 
 #include "variant.h"
 
 /*
@@ -23,141 +71,60 @@
  */
 const PinDescription g_APinDescription[]=
 {
+  { PORTA, 11, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_11 }, // NOT USED
+  { PORTA, 10, PIO_SERCOM_ALT,  (PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_10 }, // MISO: SERCOM2/PAD[2]
+  { PORTA, 14, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_14 },	// DIGITAL OUTPUT (CS)
+  { PORTA,  9, PIO_SERCOM, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_9 }, // SCL: SERCOM0/PAD[1]
+  { PORTA,  8, PIO_SERCOM, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NMI },  // SDA: SERCOM0/PAD[0]
+  { PORTA, 15, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_15 }, // DIGITAL OUTPUT (LAN RESET)
+  { PORTA, 20, PIO_SERCOM_ALT,  (PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_4 }, // MISO: SERCOM3/PAD[2]
+  { PORTA, 21, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_5 }, // DIGITAL OUTPUT (CS)
+  { PORTA,  6, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_6 }, // DIGITAL OUTPUT (RELAY)
+  { PORTA,  7, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_7 }, // DIGITAL OUTPUT (CS)
+  { PORTA, 18, PIO_SERCOM, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_2 }, // MISO: SERCOM1/PAD[2]
+  { PORTA, 16, PIO_SERCOM, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_0 }, // MOSI: SERCOM1/PAD[0]
+  { PORTA, 19, PIO_SERCOM_ALT,  (PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_3 }, // SCK: SERCOM3/PAD[3]
+  { PORTA, 17, PIO_SERCOM, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_1 }, // SCK: SERCOM1/PAD[1]
+  { PORTA,  2, PIO_ANALOG, 		(PIN_ATTR_ANALOG),  ADC_Channel0, 	NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_2 }, // NOT USED
+  { PORTB,  8, PIO_SERCOM_ALT,  (PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_8 }, // TX: SERCOM4/PAD[0]
+  { PORTB,  9, PIO_SERCOM_ALT, 	(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_9 }, // RX: SERCOM4/PAD[1]
+  { PORTA,  4, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_4 }, // DIGITAL OUTPUT (DE)
+  { PORTA,  5, PIO_DIGITAL, 	(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_5 }, // DIGITAL INPUT (SDCARD DET)
+  { PORTB,  2, PIO_SERCOM_ALT, 	(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_2 }, // TX: SERCOM5/PAD[0]
+  { PORTA, 22, PIO_SERCOM, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_6 }, // MOSI: SERCOM3/PAD[0]
+  { PORTA, 23, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_7 }, // NOT USED
+  { PORTA, 12, PIO_SERCOM, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_12 }, // MOSI: SERCOM2/PAD[0]
+  { PORTB, 10, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_10 }, // DIGITAL OUTPUT (CAN STBY)
+  { PORTB, 11, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_11 }, // DIGITAL OUTPUT (CAN RESET)
+  { PORTB,  3, PIO_SERCOM_ALT, 	(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // RX: SERCOM5/PAD[1]
+  { PORTA, 27, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // DIGITAL OUTPUT (CONNECTOR)
+  { PORTA, 28, PIO_COM, 		(PIN_ATTR_NONE), 	No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // USB Host enable // NOT USED
+  { PORTA, 24, PIO_COM, 		(PIN_ATTR_NONE), 	No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // USB/DM
+  { PORTA, 25, PIO_COM, 		(PIN_ATTR_NONE), 	No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // USB/DP
+  { PORTB, 22, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // DIGITAL OUTPUT (CS)
+  { PORTB, 23, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // DIGITAL OUTPUT (CONNECTOR)
+  { PORTA, 13, PIO_SERCOM, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_13 }, // SCK: SERCOM2/PAD[1]
+  { PORTA,  3, PIO_OUTPUT, 		(PIN_ATTR_DIGITAL), No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // DIGITAL OUTPUT (DE)
+  { PORTA, 30, PIO_PWM, 		(PIN_ATTR_DIGITAL|PIO_SERCOM), No_ADC_Channel, NOT_ON_PWM, TCC1_CH0, EXTERNAL_INT_10 }, // SWCLK
+  { PORTA, 31, PIO_PWM, 		(PIN_ATTR_DIGITAL|PIO_SERCOM), No_ADC_Channel, NOT_ON_PWM, TCC1_CH1, EXTERNAL_INT_11 }, // SWDIO
+  
+  //{ PORTA, 22, PIO_SERCOM, PIN_ATTR_NONE, No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // SDA: SERCOM3/PAD[0]
+  //{ PORTA, 23, PIO_SERCOM, PIN_ATTR_NONE, No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // SCL: SERCOM3/PAD[1]
+  //{ PORTA, 19, PIO_SERCOM, PIN_ATTR_NONE, No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // MISO: SERCOM1/PAD[3]
+  //{ PORTA, 16, PIO_SERCOM, PIN_ATTR_NONE, No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // MOSI: SERCOM1/PAD[0]
+  //{ PORTA, 18, PIO_SERCOM, PIN_ATTR_NONE, No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // SS: SERCOM1/PAD[2]
+  //{ PORTA, 17, PIO_SERCOM, PIN_ATTR_NONE, No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // SCK: SERCOM1/PAD[1]
+  //{ PORTA, 21, PIO_PWM_ALT, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM), No_ADC_Channel, PWM0_CH7, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // Pin 7
+  //{ PORTA,  6, PIO_PWM, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM), No_ADC_Channel, PWM1_CH0, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // Pin 8
+  //{ PORTA,  7, PIO_PWM, (PIN_ATTR_DIGITAL|PIN_ATTR_PWM), No_ADC_Channel, PWM1_CH1, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // Pin 9
+  //{ PORTA,  2, PIO_ANALOG, PIN_ATTR_ANALOG, DAC_Channel0, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_2 }, // DAC/VOUT
+} ;
 
-  /*
-  +------------+------------------+--------+-----------------+--------+-----------------------+---------+---------+--------+--------+----------+----------+
-  | Pin number |  MysX pin        |  PIN   | Notes           | Peri.A |     Peripheral B      | Perip.C | Perip.D | Peri.E | Peri.F | Periph.G | Periph.H |
-  |            |                  |        |                 |   EIC  | ADC |  AC | PTC | DAC | SERCOMx | SERCOMx |  TCCx  |  TCCx  |    COM   | AC/GLCK  |
-  |            |                  |        |                 |(EXTINT)|(AIN)|(AIN)|     |     | (x/PAD) | (x/PAD) | (x/WO) | (x/WO) |          |          |
-  +------------+------------------+--------+-----------------+--------+-----+-----+-----+-----+---------+---------+--------+--------+----------+----------+
-  | 00         | D1_DFM           |  PA10  |                 |   10   |  10 |     | X02 |     |   0/02  |   2/02  |*TCC1/0 | TCC0/2 | I2S/SCK0 | GCLK_IO4 |
-  | 01         | D2_DTM           |  PA08  |                 |   NMI  |  16 |     | X00 |     |   0/00  |   2/00  |*TCC0/0 | TCC1/2 | I2S/SD1  |          |
-  | 02         | D3_INT           |  PA05  |                 |    5   |  05 |  01 | Y03 |     |         |   0/01  |*TCC0/1 |        |          |          |
-  | 03         | D4_INT           |  PA07  |                 |    7   |  07 |  03 | Y05 |     |         |   0/03  |*TCC1/1 |        | I2S/SD0  |          |
-  | 04         | D5_PWM           |  PA04  |                 |    4   |  04 |  00 | Y02 |     |         |   0/00  |*TCC0/0 | TCC0/4 |          |          |
-  | 05         | D6_PWM           |  PA06  |                 |    6   |  06 |  02 | Y04 |     |         |   0/02  |*TCC1/0 |        |          |          |
-  | 06         | D7_SCL           |  PA23  |                 |    7   |     |     | X11 |     |   3/01  |   5/01  |  TC4/1 |*TCC0/5 | USB/SOF  | GCLK_IO7 |
-  | 07         | D8_SDA           |  PA22  |                 |    6   |     |     | X10 |     |   3/00  |   5/00  |  TC4/0 |*TCC0/4 |          | GCLK_IO6 |
-  | 08         | D9_A3            |  PB02  |                 |    2   |  10 |     | Y08 |     |         |   5/00  |  TC6/0 |        |          |          |
-  | 09         | D10_A4           |  PB03  |                 |    3   |  11 |     | X09 |     |         |   5/01  |  TC6/1 |        |          |          |
-  | 10         | D11_MOSI         |  PB30  |                 |   14   |     |     |     |     |         |   5/00  | TCC0/0 | TCC1/2 |          |          |
-  | 11         | D12_MISO         |  PB22  |                 |    6   |     |     |     |     |         |   5/02  |  TC7/0 |        |          | GCLK_IO0 |
-  | 12         | D13_SCK          |  PB31  |                 |   15   |     |     |     |     |         |   5/01  | TCC0/1 | TCC1/3 |          |          |
-  | 13         | D14_CS           |  PB23  |                 |    7   |     |     |     |     |         |   5/03  |  TC7/1 |        |          | GCLK_IO1 |
-  | 14         | A1               |  PA02  |                 |    2   |  00 |     | Y00 | VOUT|         |         |        |        |          |          |
-  | 15         | A2               |  PA03  |                 |    3   |  01 |     | Y01 |     |         |         |        |        |          |          |
-  +------------+------------------+--------+-----------------+--------+-----+-----+-----+-----+---------+---------+--------+--------+----------+----------+
-  */
-
-  { PORTA, 10, PIO_SERCOM,     (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_11 },
-  { PORTA,  8, PIO_SERCOM,     (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NMI },
-  { PORTA,  5, PIO_DIGITAL,    (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_14 },
-  { PORTA,  7, PIO_DIGITAL,    (PIN_ATTR_DIGITAL),                          No_ADC_Channel, PWM0_CH1, TCC0_CH1, EXTERNAL_INT_9 },
-  { PORTA,  4, PIO_TIMER,      (PIN_ATTR_DIGITAL|PIN_ATTR_PWM|PIN_ATTR_TIMER), No_ADC_Channel, PWM0_CH0, TCC0_CH0, EXTERNAL_INT_NMI},
-  { PORTA,  6, PIO_TIMER,      (PIN_ATTR_DIGITAL|PIN_ATTR_PWM|PIN_ATTR_TIMER), No_ADC_Channel, PWM3_CH1, TC3_CH1, EXTERNAL_INT_1},
-  { PORTA, 23, PIO_SERCOM,     (PIN_ATTR_DIGITAL),                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_6 },
-  { PORTA, 22, PIO_SERCOM,     (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_7 },
-  { PORTB,  2, PIO_DIGITAL,    (PIN_ATTR_ANALOG|PIN_ATTR_DIGITAL),          ADC_Channel10,  NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_2},
-  { PORTB,  3, PIO_DIGITAL,    (PIN_ATTR_ANALOG|PIN_ATTR_DIGITAL),          ADC_Channel11,  NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_3},
-  { PORTB, 30, PIO_SERCOM_ALT, (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, NOT_AN_INTERRUPT },
-  { PORTB, 22, PIO_SERCOM_ALT, (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, NOT_AN_INTERRUPT },
-  { PORTB, 31, PIO_SERCOM_ALT, (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, NOT_AN_INTERRUPT },
-  { PORTB, 23, PIO_DIGITAL,    (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, NOT_AN_INTERRUPT },
-  { PORTA,  2, PIO_ANALOG,     (PIN_ATTR_ANALOG),                           ADC_Channel0,   NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_1},
-  { PORTA,  3, PIO_ANALOG,     (PIN_ATTR_ANALOG),                           ADC_Channel1,   NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_3},
-
-  /*
-  +-------- ----+------------------+--------+-----------------+--------+-----------------------+---------+---------+--------+--------+----------+----------+
-  | Pin number |  Internal pins   |  PIN   | Notes           | Peri.A |     Peripheral B      | Perip.C | Perip.D | Peri.E | Peri.F | Periph.G | Periph.H |
-  |            |                  |        |                 |   EIC  | ADC |  AC | PTC | DAC | SERCOMx | SERCOMx |  TCCx  |  TCCx  |    COM   | AC/GLCK  |
-  |            |  LED INDICATORS  |        |                 |(EXTINT)|(AIN)|(AIN)|     |     | (x/PAD) | (x/PAD) | (x/WO) | (x/WO) |          |          |
-  +------------+------------------+--------+-----------------+--------+-----+-----+-----+-----+---------+---------+--------+--------+----------+----------+
-  | 16         | LED_1            |  PA19  |                 |   10   |     |     | X02 |     |   0/02  |   2/02  |*TCC1/0 | TCC0/2 | I2S/SCK0 | GCLK_IO4 |
-  | 17         | LED_2            |  PA20  |                 |   NMI  |     |     | X00 |     |   0/00  |   2/00  |*TCC0/0 | TCC1/2 | I2S/SD1  |          |
-  | 18         | LED_3            |  PA21  |                 |   05   |  05 |  01 | Y03 |     |         |   0/01  |*TCC0/1 |        |          |          |
-  | 19         | LED_4            |  PB16  |                 |   06   |  07 |  03 | Y05 |     |         |   0/03  |*TCC1/1 |        | I2S/SD0  |          |
-  | 20         | LED_5            |  PB17  |                 |  *10   |     |     |     |     |         |   4/02  |* TC5/0 | TCC0/4 | I2S/MCK1 | GCLK_IO4 |
-  +------------+------------------+--------+-----------------+--------+-----+-----+-----+-----+---------+---------+--------+--------+----------+----------+
-  */
-
-  { PORTA, 19, PIO_OUTPUT, (PIN_ATTR_DIGITAL),                              No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, NOT_AN_INTERRUPT },
-  { PORTA, 20, PIO_OUTPUT, (PIN_ATTR_DIGITAL),                              No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, NOT_AN_INTERRUPT },
-  { PORTA, 21, PIO_OUTPUT, (PIN_ATTR_DIGITAL),                              No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, NOT_AN_INTERRUPT },
-  { PORTB, 16, PIO_OUTPUT, (PIN_ATTR_DIGITAL),                              No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, NOT_AN_INTERRUPT },
-  { PORTB, 17, PIO_OUTPUT, (PIN_ATTR_DIGITAL),                              No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, NOT_AN_INTERRUPT },
-
- /*
-  +------------+------------------+--------+-----------------+--------+-----------------------+---------+---------+--------+--------+----------+----------+
-  | Pin number |  Internal pins   |  PIN   | Notes           | Peri.A |     Peripheral B      | Perip.C | Perip.D | Peri.E | Peri.F | Periph.G | Periph.H |
-  |            |                  |        |                 |   EIC  | ADC |  AC | PTC | DAC | SERCOMx | SERCOMx |  TCCx  |  TCCx  |    COM   | AC/GLCK  |
-  |            |  Peripherals     |        |                 |(EXTINT)|(AIN)|(AIN)|     |     | (x/PAD) | (x/PAD) | (x/WO) | (x/WO) |          |          |
-  +------------+------------------+--------+-----------------+--------+-----+-----+-----+-----+---------+---------+--------+--------+----------+----------+
-  | 21         |  NET_MOSI        |  PB12  |                 |   12   |     |     | X12 |     |   4/00  |         |  TC4/0 | TCC0/6 | I2S/FS1  | GCLK_IO6 |
-  | 22         |  NET_MISO        |  PB14  |                 |   14   |     |     | X14 |     |   4/02  |         |  TC5/0 |        |          | GCLK_IO0 |
-  | 23         |  NET_SCK         |  PB13  |                 |   13   |     |     | X13 |     |   4/01  |         |  TC4/1 | TCC0/7 |          | GCLK_IO7 |
-  | 24         |  NET_SS          |  PB15  |                 |   15   |     |     | X15 |     |   4/03  |         |  TC5/1 |        |          | GCLK_IO1 |
-  | 25         |  NET_RST         |  PB11  |                 |   11   |     |     |     |     |         |    4/3  |  TC5/0 | TCC0/5 | I2S/SCK1 | GCLK_IO5 |
-  | 26         |  MOSI            |  PA16  |                 |   12   |     |     | X12 |     |   1/00  |         |  TC4/0 | TCC0/6 | I2S/FS1  | GCLK_IO6 |
-  | 27         |  MISO            |  PA18  |                 |   14   |     |     | X14 |     |   1/02  |         |  TC5/0 |        |          | GCLK_IO0 |
-  | 28         |  SCK             |  PA17  |                 |   13   |     |     | X13 |     |   1/01  |         |  TC4/1 | TCC0/7 |          | GCLK_IO7 |
-  | 29         |  CS_NRF          |  PA09  |                 |    9   |  17 |     | X01 |     |   0/01  |    2/1  | TCC0/1 | TCC1/3 | I2S/MCK  |          |
-  | 30         |  CS_RFM          |  PA12  |                 |   12   |     |     |     |     |   2/00  |    4/0  | TCC2/0 | TCC0/6 |          | AC/CMP0  |
-  | 31         |  IRQ_NRF         |  PA14  |                 |   14   |     |     |     |     |   2/02  |    4/2  |  TC3/0 | TCC0/4 |          | GCLK_IO0 |
-  | 32         |  IRQ_RFM         |  PA13  |                 |   13   |     |     |     |     |   2/01  |    4/1  | TCC2/1 | TCC0/7 |          | AC/CMP1  |
-  | 33         |  CS_SDCARD       |  PA27  |                 |   15   |     |     |     |     |         |         |        |        |          | GCLK_IO0 |
-  | 34         |  CE_NRF          |  PA28  |                 |    8   |     |     |     |     |         |         |        |        |          | GCLK_IO0 |
-  | 35         |  SDCARD_DETECT   |  PB07  |                 |    7   |     |     |     |     |         |         |        |        |          |          |
-  +------------+------------------+--------+-----------------+--------+-----+-----+-----+-----+---------+---------+--------+--------+----------+----------+
-  */
-
-  { PORTB, 12, PIO_SERCOM,     (PIN_ATTR_NONE),                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // MOSI: SERCOM4/PAD[0]
-  { PORTB, 14, PIO_SERCOM,     (PIN_ATTR_NONE),                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // MISO: SERCOM4/PAD[2]
-  { PORTB, 13, PIO_SERCOM,     (PIN_ATTR_NONE),                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // SS: SERCOM4/PAD[3]
-  { PORTB, 15, PIO_SERCOM,     (PIN_ATTR_NONE),                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // SCK: SERCOM1/PAD[1]
-  { PORTB, 11, PIO_OUTPUT,     (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // Reset line
-  { PORTA, 16, PIO_SERCOM,     (PIN_ATTR_NONE),                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // MOSI: SERCOM4/PAD[0]
-  { PORTA, 18, PIO_SERCOM,     (PIN_ATTR_NONE),                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // MISO: SERCOM4/PAD[2]
-  { PORTA, 17, PIO_SERCOM,     (PIN_ATTR_NONE),                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // SS: SERCOM4/PAD[3]
-  { PORTA,  9, PIO_OUTPUT,     (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_9 },
-  { PORTA, 12, PIO_OUTPUT,     (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_12 },
-  { PORTA, 14, PIO_DIGITAL,    (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_14 },
-  { PORTA, 13, PIO_DIGITAL,    (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_13 },
-  { PORTA, 27, PIO_OUTPUT,     (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE },
-  { PORTA, 28, PIO_OUTPUT,     (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE },
-  { PORTB,  7, PIO_DIGITAL,    (PIN_ATTR_DIGITAL),                          No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_7 },
-
-  /*
-   +------------+------------------+--------+-----------------+--------+-----------------------+---------+---------+--------+--------+----------+----------+
-   | Pin number |  Internal pins   |  PIN   | Notes           | Peri.A |     Peripheral B      | Perip.C | Perip.D | Peri.E | Peri.F | Periph.G | Periph.H |
-   |            |                  |        |                 |   EIC  | ADC |  AC | PTC | DAC | SERCOMx | SERCOMx |  TCCx  |  TCCx  |    COM   | AC/GLCK  |
-   |            |  Peripherals     |        |                 |(EXTINT)|(AIN)|(AIN)|     |     | (x/PAD) | (x/PAD) | (x/WO) | (x/WO) |          |          |
-   +------------+------------------+--------+-----------------+--------+-----+-----+-----+-----+---------+---------+--------+--------+----------+----------+
-   | 36         | BAT_DET          |  PB08  |                 |    8   |   2 |     | Y14 |     |         |   4/0   |  TC4/0 |        |          |          |
-   | 37         | SUPPLY_DET       |  PB09  |                 |    9   |   3 |     | Y15 |     |         |   4/1   |  TC4/1 |        |          |          |
-   | 38         | SWC1             |  PB06  |                 |    6   |  14 |     | Y12 |     |         |         |        |        |          |          |
-   | 39         | SWC2             |  PB04  |                 |    4   |  12 |     | Y10 |     |         |         |        |        |          |          |
-   | 40         | SWC3             |  PA15  |                 |   15   |     |     |     |     |   2/3   |   4/3   |  TC3/1 | TCC0/5 |          | GCLK_IO1 |
-   | 41         | INCL_SW          |  PB01  |                 |    1   |   9 |     | Y07 |     |         |   5/3   |  TC7/1 |        |          | GCLK_IO1 |
-   | 42         | RFM_DIO5         |  PB05  |                 |    5   |  13 |     | Y11 |     |         |         |        |        |          |          |
-   | 43         | RESET_RFM        |  PB10  |                 |   10   |     |     |     |     |         |   4/2   |  TC5/0 | TCC0/4 | I2S/MCK1 | GCLK_IO4 |
-   | 44         | SECURITY         |  PA11  | ATSHA204        |   11   |  19 |     | X03 |     |   0/3   |   2/3   | TCC1/1 | TCC0/3 | I2S/FS0  | GCLK_IO5 |
-   | 45         |                  |  PA24  | USB_NEGATIVE    | *USB/DM
-   | 46         |                  |  PA25  | USB_POSITIVE    | *USB/DP
-   +------------+------------------+--------+-----------------+--------+-----+-----+-----+-----+---------+---------+--------+--------+----------+----------+
-   */
-
-  { PORTB,  8, PIO_ANALOG,  PIN_ATTR_ANALOG,                              ADC_Channel2, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE },
-  { PORTB,  9, PIO_ANALOG,  PIN_ATTR_ANALOG,                              ADC_Channel3, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE },
-  { PORTB,  6, PIO_DIGITAL, PIN_ATTR_DIGITAL,                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_6  },
-  { PORTB,  4, PIO_DIGITAL, PIN_ATTR_DIGITAL,                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_4  },
-  { PORTA, 15, PIO_DIGITAL, PIN_ATTR_DIGITAL,                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_15 },
-  { PORTB,  1, PIO_DIGITAL, PIN_ATTR_DIGITAL,                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_1  },
-  { PORTB,  5, PIO_DIGITAL, PIN_ATTR_DIGITAL,                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_5  },
-  { PORTB, 10, PIO_DIGITAL, PIN_ATTR_DIGITAL,                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_6  },
-  { PORTA, 11, PIO_DIGITAL, PIN_ATTR_DIGITAL,                             No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE},
-  { PORTA, 24, PIO_COM,     PIN_ATTR_NONE,                                No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE }, // USB/DM
-  { PORTA, 25, PIO_COM,     PIN_ATTR_NONE,                                No_ADC_Channel, NOT_ON_PWM, NOT_ON_TIMER, EXTERNAL_INT_NONE } // USB/DP
-};
+extern "C" {
+    unsigned int PINCOUNT_fn() {
+        return (sizeof(g_APinDescription) / sizeof(g_APinDescription[0]));
+    }
+}
 
 const void* g_apTCInstances[TCC_INST_NUM+TC_INST_NUM]={ TCC0, TCC1, TCC2, TC3, TC4, TC5 } ;
 
@@ -169,9 +136,15 @@ SERCOM sercom3( SERCOM3 ) ;
 SERCOM sercom4( SERCOM4 ) ;
 SERCOM sercom5( SERCOM5 ) ;
 
-Uart Serial1( &sercom0, PIN_SERIAL1_RX, PIN_SERIAL1_TX, PAD_SERIAL1_RX, PAD_SERIAL1_TX ) ;
+Uart Serial1( &sercom4, PIN_SERIAL1_RX, PIN_SERIAL1_TX, PAD_SERIAL1_RX, PAD_SERIAL1_TX ) ;
+Uart Serial( &sercom5, PIN_SERIAL_RX, PIN_SERIAL_TX, PAD_SERIAL_RX, PAD_SERIAL_TX ) ;
 
-void SERCOM0_Handler()
+void SERCOM4_Handler()
 {
   Serial1.IrqHandler();
+}
+
+void SERCOM5_Handler()
+{
+  Serial.IrqHandler();
 }
