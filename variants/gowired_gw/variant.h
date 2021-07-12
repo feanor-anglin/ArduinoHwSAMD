@@ -51,8 +51,8 @@ extern "C" {
  *----------------------------------------------------------------------------*/
 
 // Number of pins defined in PinDescription array
-#define PINS_COUNT                 (44u)
-#define NUM_DIGITAL_PINS           (22u)
+#define PINS_COUNT                 (38u)
+//#define NUM_DIGITAL_PINS           (22u)
 //#define NUM_ANALOG_INPUTS    (6u)
 //#define NUM_ANALOG_OUTPUTS   (1u)
 
@@ -125,8 +125,8 @@ static const uint8_t A5    = PIN_A5;
 #define PAD_SERIAL_RX        (SERCOM_RX_PAD_3)
 
 // Serial1 (RS485_2)
-#define PIN_SERIAL1_RX       (3ul)
-#define PIN_SERIAL1_TX       (4ul)
+#define PIN_SERIAL1_RX       (16ul)
+#define PIN_SERIAL1_TX       (15ul)
 #define PAD_SERIAL1_TX       (UART_TX_PAD_2)
 #define PAD_SERIAL1_RX       (SERCOM_RX_PAD_3)
 
@@ -139,7 +139,7 @@ static const uint8_t A5    = PIN_A5;
 #define PIN_SPI_MISO         (10u)
 #define PIN_SPI_MOSI         (11u)
 #define PIN_SPI_SCK          (13u)
-#define PIN_SPI_SS           (43u)
+#define PIN_SPI_SS           (0u)
 #define PERIPH_SPI           sercom1
 #define PAD_SPI_TX           SPI_PAD_0_SCK_1
 #define PAD_SPI_RX           SERCOM_RX_PAD_2
@@ -151,7 +151,7 @@ static const uint8_t SCK   = PIN_SPI_SCK;
 // SPI1 (MCP25625)
 #define PIN_SPI1_MISO        (1u)
 #define PIN_SPI1_MOSI        (22u)
-#define PIN_SPI1_SCK         (38u)
+#define PIN_SPI1_SCK         (32u)
 #define PIN_SPI1_SS          (2u)
 #define PERIPH_SPI1          sercom2
 #define PAD_SPI1_TX          SPI_PAD_0_SCK_1
@@ -209,7 +209,7 @@ static const uint8_t SCL   = PIN_WIRE_SCL;
  */
 
 // RS485_1
-#define SERIAL_DE            (42u)
+#define SERIAL_DE            (33u)
 
 // RS485_2
 #define SERIAL1_DE           (17u)

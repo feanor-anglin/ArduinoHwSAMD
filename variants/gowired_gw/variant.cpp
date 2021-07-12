@@ -52,10 +52,10 @@
  * | 29         |                  |  PA25  | USB_POSITIVE    | *USB/DP
  * | 30         | SPI2_CS3         |  PB22  | CONNECTOR CS2   | SERCOM5/PAD[2]
  * | 31         | CONN_OUT1        |  PB23  | CONNECTOR PIN   | SERCOM5/PAD[3]
- * | 38         | SPI1_SCK         |  PA13  | CAN SCK         | EIC/EXTINT[13]                                *SERCOM2/PAD[1]  SERCOM4/PAD[1]  TCC2/WO[1]  TCC0/WO[7]
- * | 42         | DE_0             |  PA03  | RS485_0 DE      | EIC/EXTINT[3]  [ADC|DAC]/VREFA ADC/AIN[1] PTC/Y[1]
- * | 44         |                  |  PA30  | SWCLK           | EXTINT[10]                                                     SERCOM1/PAD[2]  TCC1/WO[0]
- * | 45         |                  |  PA31  | SWDIO           | EXTINT[11]                                                     SERCOM1/PAD[3]  TCC1/WO[1]
+ * | 32         | SPI1_SCK         |  PA13  | CAN SCK         | EIC/EXTINT[13]                                *SERCOM2/PAD[1]  SERCOM4/PAD[1]  TCC2/WO[1]  TCC0/WO[7]
+ * | 33         | DE_0             |  PA03  | RS485_0 DE      | EIC/EXTINT[3]  [ADC|DAC]/VREFA ADC/AIN[1] PTC/Y[1]
+ * | 34         |                  |  PA30  | SWCLK           | EXTINT[10]                                                     SERCOM1/PAD[2]  TCC1/WO[0]
+ * | 35         |                  |  PA31  | SWDIO           | EXTINT[11]                                                     SERCOM1/PAD[3]  TCC1/WO[1]
  * +------------+------------------+--------+-----------------+--------------------------------------------------------------------------------------------------------
  * |            |32.768KHz Crystal |        |                 |
  * +------------+------------------+--------+-----------------+--------------------------------------------------------------------------------------------------------
