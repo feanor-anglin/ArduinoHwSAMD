@@ -52,7 +52,7 @@ extern "C" {
 
 // Number of pins defined in PinDescription array
 #define PINS_COUNT                 (38u)
-//#define NUM_DIGITAL_PINS           (22u)
+#define NUM_DIGITAL_PINS           (38u)
 //#define NUM_ANALOG_INPUTS    (6u)
 //#define NUM_ANALOG_OUTPUTS   (1u)
 
@@ -95,7 +95,7 @@ extern "C" {
 #define LED_ORANGE (20u)
 /*
  * Analog pins
- *
+ */
 #define PIN_A0               (14ul)
 #define PIN_A1               (15ul)
 #define PIN_A2               (8ul)
@@ -165,9 +165,9 @@ static const uint8_t SCK1  = PIN_SPI1_SCK;
 #define PIN_SPI2_MISO        (6u)
 #define PIN_SPI2_MOSI        (20u)
 #define PIN_SPI2_SCK         (12u)
-#define PIN_SPI1_SS1         (9u)
-#define PIN_SPI1_SS2         (7u)
-#define PIN_SPI1_SS3         (30u)
+#define PIN_SPI2_SS1         (9u)
+#define PIN_SPI2_SS2         (7u)
+#define PIN_SPI2_SS3         (30u)
 #define PERIPH_SPI2          sercom3
 #define PAD_SPI2_TX          SPI_PAD_0_SCK_1
 #define PAD_SPI2_RX          SERCOM_RX_PAD_2
@@ -294,5 +294,5 @@ unsigned int PINCOUNT_fn();
 //#define SERIAL_PORT_HARDWARE_OPEN   Serial1
 
 
-//#define Serial SerialUSB
+#define Serial2 SerialUSB
 #endif /* _VARIANT_GOWIRED_GW_ */
